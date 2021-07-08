@@ -80,4 +80,10 @@ address SearchNodeByID(Tree P, int id);
 void DestructTree(Tree *P);
 /* tambah comment nanti */
 
+address SuccessorInOrder(Tree P);
+/* mengemalikan address dari SuccessorInOrder*/
+
+address PredecessorInOrder(Tree P);
+/* mengembalikan address dari PredecessorInOrder*/
+
 #endif //TREE_PEGAWAI_H
