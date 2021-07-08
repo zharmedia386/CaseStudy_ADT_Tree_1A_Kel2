@@ -20,11 +20,8 @@ address Alokasi(infotype X){
 	return result;
 }
 
-void BuatDaftarKosong(Tree *P, infotype data){
-	address P = Alokasi(data);
-	P->root->left = NULL;
-	P->root->right = NULL;
-	P->root = P;
+void BuatDaftarKosong(Tree *P){
+	P->root = NULL;
 }
 
 bool isEmpty(Tree root){
