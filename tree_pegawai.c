@@ -43,15 +43,14 @@ address GetRight(address node){
 
 bool TambahPegawai(Tree *root, address node){
 	if(isEmpty(*root)){
-		root->root = node; 
+		root->root = node;
 		return true;
-	} 
+	}
 	address current = root->root;
 	while (current != NULL){
 		//cek apakah id sama atau tidak
 		if(current->info.id == node->info.id)
 			return false;
-		printf("a");
 		if(node->info.id < current->info.id){
 			//jika tidak ada anak, maka masukkan node
 			if(current->left == NULL){
@@ -59,7 +58,6 @@ bool TambahPegawai(Tree *root, address node){
 				return true;
 			}
 			current = current->left;
-			printf("c");
 		}
 		else{
 			//jika tidak ada anak, maka masukkan node
@@ -68,7 +66,6 @@ bool TambahPegawai(Tree *root, address node){
 				return true;
 			}
 			current = current->right;
-			printf("d");
 		}
 	}
 	return false;
@@ -147,7 +144,7 @@ address SuccessorInOrder(Tree P, address node) {
 }
 
 address CariPegawaiDenganID(address root, int id){
-	if (root->left==Nil && root->right==Nil)
+	if (root==Nil)
 	{
 		return Nil;
 	}
