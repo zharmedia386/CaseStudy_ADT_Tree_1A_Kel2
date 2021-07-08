@@ -4,45 +4,50 @@
 #include "tree_pegawai.h"
 #include "tree_pegawai.c"
 
-void addPegawai() {
+void addPegawai(Tree *T) {
 	infotype X;
+	address temp;
 	
 	printf ("PENDATAAN PEGAWAI PERUSAHAAN CIWARUGA CORP\n");
-	printf ("--------------------------------------------\n");
-	printf ("                TAMBAH PEGAWAI               \n");
-	printf ("Nama Pegawai :\n ");
-	scanf ("%[^\n]", X.nama);
-	fflush(stdin);
+	printf ("------------------------------------------------\n");
+	printf ("                 CEK DATA PEGAWAI               \n");
 	printf ("ID Pegawai : \n");
 	scanf ("%d", &X.id);
-	fflush(stdin);
-	
-	TambahPegawai(&root,X);
+		
+	if(CariPegawaiDenganID(T->root, X.id)==NULL){
+		puts("Data pegawai tidak ditemukan");
+	}else{
+		temp = CariPegawaiDenganID(T->root, X.id);
+		puts("Pegawai Ditemukan!!");
+		printf("%d %s\n", temp->info.id, temp->info.nama);
+	}
+	puts("Press Any Key to continue...");
+	getch();
 }
 
-void removePegawai() {
+void removePegawai(address node, Tree T) {
 	infotype X;
 	
 	printf ("PENDATAAN PEGAWAI PERUSAHAAN CIWARUGA CORP\n");
 	printf ("------------------------------------------------\n");
 	printf ("                 HAPUS PEGAWAI               \n");
 	printf ("ID Pegawai : \n");
-	scanf ("%d", &X.id)
+	scanf ("%d", &X.id);
 		
-	HapusPegawai(&root, address node);
+	HapusPegawai(T,&node);
 }
 
-void searchPegawai() {
+void searchPegawai(address node) {
 	
 	infotype X;
 	
 	printf ("PENDATAAN PEGAWAI PERUSAHAAN CIWARUGA CORP\n");
 	printf ("------------------------------------------------\n");
-	printf ("                 CEK DATA PEGAWAI               \n")
+	printf ("                 CEK DATA PEGAWAI               \n");
 	printf ("ID Pegawai : \n");
-	scanf ("%d", &X.id)
+	scanf ("%d", &X.id);
 		
-	CariPegawaiDenganID(P, id);
+	CariPegawaiDenganID(node, &X.id);
 }
 
 
@@ -51,21 +56,22 @@ int main()
 {
 	int ch;
 	Tree T;
+	address P;
 	infotype data;
 
-	BuatDaftarKosong(&T, data);
+	BuatDaftarKosong(&T);
 	
 	while (1) {
 		scanf ("%c", &ch);
 		switch (ch) {		
 			case 1: //Liat Tree
-				CetakPegawaiPreorder(T);
+				CetakPegawaiPreorder(P);
 			case 2: //Tambah Pegawai
-				addPegawai();
+				addPegawai(&T);
 			case 3: //Delete Pegawai
-				removePegawai();
+				removePegawai(P,T);
 			case 4: //Liat Data pegawai tertentu
-				searchPegawai();
+				searchPegawai(P);
 			case 0: //Exit Aplikasi	
 				return 0;
 		}	
