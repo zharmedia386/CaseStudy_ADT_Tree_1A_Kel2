@@ -53,7 +53,7 @@ address GetLeft(Tree P);
 address GetRight(Tree P);
 /* Mengirimkan anak kanan pohon biner P  */
 
-bool AddNode(Tree *root, infotype data);
+bool AddNode(Tree *root, address node);
 /* tambah comment nanti */
 
 void DeleteNode(Tree *root, address node);
