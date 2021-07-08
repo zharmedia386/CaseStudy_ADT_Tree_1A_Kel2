@@ -33,12 +33,12 @@ void Dealokasi(address node){
 	free(node);
 }
 
-address GetLeft(Tree P){
-	return P.root->left;
+address GetLeft(address node){
+	return node->left;
 }
 
-address GetRight(Tree P){
-	return P.root->right;
+address GetRight(address node){
+	return node->right;
 }
 
 bool TambahPegawai(Tree *root, address node){
@@ -65,7 +65,7 @@ bool TambahPegawai(Tree *root, address node){
 }
 
 bool HapusPegawai(Tree P, address* node) {
-    *node = SuccessorInOrder(*node);
+    *node = SuccessorInOrder(P, *node);
 }
 
 void CetakPegawaiPreorder(address node){
