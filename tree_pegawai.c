@@ -7,16 +7,16 @@ address Alokasi(infotype X){
 	address result = (address)malloc(sizeof(ElmtNode));
 	if(!result)
 		return NULL;
-		
+
 	//menyalin data dari X ke dalam node
 	result->info.id = X.id;
 	result->info.nama = malloc(strlen(X.nama));
 	strcpy(result->info.nama, X.nama);
-	
+
 	//mengosongkan pointer child
 	result->left = NULL;
 	result->right = NULL;
-	
+
 	return result;
 }
 
@@ -29,24 +29,25 @@ void Dealokasi(address node){
 	free(node);
 }
 
-bool AddNode(Tree *root, address node){
+bool TambahPegawai(Tree *root, address node){
 	if(isEmpty(*root)){
-		root->root = node; 
+		root->root = node;
 		return true;
-	} 
-	
+	}
+
 	address current = root;
+
 	while (current != NULL){
 		//cek apakah id sama atau tidak
 		if(current->info.id == node->info.id)
 			return false;
-			
+
 		if(node->info.id < current->info.id)
 			current = current->left;
 		else
 			current = current->right;
 	}
-	
+
 	current = node;
 	return true;
 }
