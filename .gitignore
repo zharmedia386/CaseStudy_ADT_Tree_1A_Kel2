@@ -1,0 +1,8 @@
+#Ignore Everything
+*
+
+#But not these
+!.gitignore
+!main.c
+!tree_pegawai.c
+!tree_pegawai.h
