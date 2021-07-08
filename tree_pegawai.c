@@ -59,7 +59,7 @@ bool TambahPegawai(Tree *root, address node){
 				return true;
 			}
 			current = current->left;
-			printf("c");
+			printf("left");
 		}
 		else{
 			//jika tidak ada anak, maka masukkan node
@@ -68,7 +68,7 @@ bool TambahPegawai(Tree *root, address node){
 				return true;
 			}
 			current = current->right;
-			printf("d");
+			printf("right");
 		}
 	}
 	return false;
