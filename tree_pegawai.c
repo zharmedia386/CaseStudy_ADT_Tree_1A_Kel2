@@ -43,25 +43,34 @@ address GetRight(address node){
 
 bool TambahPegawai(Tree *root, address node){
 	if(isEmpty(*root)){
-		root->root = node;
+		root->root = node; 
 		return true;
-	}
-
-	address current = root;
-
+	} 
+	
+	address current = tree->root;
 	while (current != NULL){
 		//cek apakah id sama atau tidak
 		if(current->info.id == node->info.id)
 			return false;
-
-		if(node->info.id < current->info.id)
+			
+		if(node->info.id < current->info.id){
+			//jika tidak ada anak, maka masukkan node
+			if(current->left == NULL){
+				current->left = node;
+				return true
+			}
 			current = current->left;
-		else
+		}
+		else{
+			//jika tidak ada anak, maka masukkan node
+			if(current->right == NULL){
+				current->right = node;
+				return true
+			}
 			current = current->right;
+		}
 	}
-
-	current = node;
-	return true;
+	return false;
 }
 
 bool HapusPegawai(Tree P, address* node) {
