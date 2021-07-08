@@ -74,7 +74,7 @@ void CetakPegawaiPostorder(address node);
 /* F.S  : semua simpul P sudah diproses secara Postorder; kiri,     */
 /* 	  kanan, akar (dengan Proses (P)) 			    */
 
-address CariPegawaiDenganID(address roo, int id);
+address CariPegawaiDenganID(address root, int id);
 /* tambah comment nanti */
 
 void HapusDaftar(Tree *P);

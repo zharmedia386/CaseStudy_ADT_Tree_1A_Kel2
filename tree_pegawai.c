@@ -94,14 +94,6 @@ void CetakPegawaiPostorder(address node){
 	}
 }
 
-address GetLeft(Tree P){
-	return P.root->left;
-}
-
-address GetRight(Tree P){
-	return P.root->right;
-}
-
 address CariPegawaiDenganID(address root, int id){
 	if (root->left==Nil && root->right==Nil)
 	{
@@ -117,11 +109,11 @@ address CariPegawaiDenganID(address root, int id){
 		{
 			if (id < root->info.id) // id < Info(root)
 			{
-				CariPegawaiDenganID(Left(root)), id);
+				CariPegawaiDenganID((root->left),id);
 			}
 			else
 			{ /* id > Info(root)  */
-				CariPegawaiDenganID(Right(root)), id);
+				CariPegawaiDenganID((root->right),id);
 			}
 		}
 	}
