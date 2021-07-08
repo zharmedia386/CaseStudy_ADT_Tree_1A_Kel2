@@ -28,9 +28,11 @@ typedef struct tElmtNode {
   address right;
 } ElmtNode;
 
-typedef address Tree;
+typedef struct{
+  address root;
+}Tree;
 
-address_node Alokasi(infotype data);
+address Alokasi(infotype data);
 /* Menghasilkan  address hasil alokasi sebuah  Node 	*/
 /* Jika alokasi berhasil, maka  address tidak NIl   	*/
 /* Info(P)=data, Left(P)=Nil,Right(P)=Nil	*/
@@ -39,7 +41,7 @@ address_node Alokasi(infotype data);
 bool IsEmpty(Tree root);
 /* Mengembalikan true jika pohon kosong */
 
-void CreateEmpty(Tree root);
+void CreateEmpty(Tree *root);
 /* Membuat  Tree   kosong  */
 
 void DeAlokasi(address node);
@@ -51,10 +53,10 @@ address GetLeft(Tree P);
 address GetRight(Tree P);
 /* Mengirimkan anak kanan pohon biner P  */
 
-void AddNode(Tree root, infotype data);
+void AddNode(Tree *root, infotype data);
 /* tambah comment nanti */
 
-void DeleteNode(Tree root, address node);
+void DeleteNode(Tree *root, address node);
 /* tambah comment nanti */
 
 void PrintPreorder(Tree P);
@@ -71,11 +73,11 @@ void PrintPostorder(Tree P);
 /* I.S  : P terdefinisi   					    */
 /* F.S  : semua simpul P sudah diproses secara Postorder; kiri,     */
 /* 	  kanan, akar (dengan Proses (P)) 			    */
-						   */
+
 address SearchNodeByID(Tree P, int id);
 /* tambah comment nanti */
 
-void DestructTree(Tree P);
+void DestructTree(Tree *P);
 /* tambah comment nanti */
 
 #endif //TREE_PEGAWAI_H
