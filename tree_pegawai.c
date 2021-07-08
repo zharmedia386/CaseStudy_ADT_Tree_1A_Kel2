@@ -67,6 +67,10 @@ bool TambahPegawai(Tree *root, address node){
 	return true;
 }
 
+bool HapusPegawai(Tree P, address* node) {
+    *node = SuccessorInOrder(*node);
+}
+
 void CetakPegawaiPreorder(address node){
 	if(node != NULL) {
 		printf("Id : %d\n", node->info.id);
@@ -92,6 +96,38 @@ void CetakPegawaiPostorder(address node){
 		printf("Id : %d\n", node->info.id);
 		printf("Nama : %s\n", node->info.nama);
 	}
+}
+
+address MinValue(address node) {
+    address current = node;
+
+    while(current->left != NULL) {
+        current = current->left;
+    }
+
+    return current;
+}
+
+/* mengemalikan address dari SuccessorInOrder*/
+address SuccessorInOrder(Tree P, address node) {
+    if(node->right != NULL) {
+        return MinValue(node->right);
+    }
+
+    address current = P.root;
+    address successor = Nil;
+
+    while(current != Nil) {
+        if(node->info.id < current->info.id) {
+            successor = current;
+            current = current->left;
+        } else if (node->info.id > current->info.id) {
+            current = current->right;
+        } else
+            break;
+    }
+
+    return successor;
 }
 
 address CariPegawaiDenganID(address root, int id){
