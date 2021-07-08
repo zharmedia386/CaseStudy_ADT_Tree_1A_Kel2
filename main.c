@@ -4,6 +4,24 @@
 #include "tree_pegawai.h"
 #include "tree_pegawai.c"
 
+int Menu() {
+	
+	int x = -1;
+	
+	printf (" PENDATAAN PEGAWAI PERUSAHAAN CIWARUGA CORP\n");
+	printf ("------------------------------------------------\n");
+	printf ("1. Cek Semua Data Pegawai\n");
+	printf ("2. Tambah Data Pegawai\n");
+	printf ("3. Hapus Data Pegawai\n");
+	printf ("4. Cari Data Pegawai\n");
+	printf ("0. Cari Data Pegawai\n");
+	
+	while (x > 4 && x<0)
+		scanf ("%d", &x);
+	
+	return x;
+}
+
 void addPegawai(Tree *T) {
 	infotype X;
 	address temp;
@@ -60,9 +78,9 @@ int main()
 	infotype data;
 
 	BuatDaftarKosong(&T);
-	
+		
 	while (1) {
-		scanf ("%c", &ch);
+		ch = Menu ();
 		switch (ch) {		
 			case 1: //Liat Tree
 				CetakPegawaiPreorder(P);
