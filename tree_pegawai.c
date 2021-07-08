@@ -20,11 +20,33 @@ address Alokasi(infotype X){
 	return result;
 }
 
-bool isEmpty(tree root){
-	return (tree->root);
+bool isEmpty(Tree root){
+	return (root.root);
 }
 
 void Dealokasi(address node){
 	free(node->info.nama);
 	free(node);
+}
+
+bool AddNode(Tree *root, address node){
+	if(isEmpty(*root)){
+		root->root = node; 
+		return true;
+	} 
+	
+	address current = Tree->root;
+	while (current != NULL){
+		//cek apakah id sama atau tidak
+		if(current->info.id == node->info.id)
+			return false;
+			
+		if(node->info.id < current->info.id)
+			current = current->left;
+		else
+			current = current->right;
+	}
+	
+	current = node;
+	return true;
 }
