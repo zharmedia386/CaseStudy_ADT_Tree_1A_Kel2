@@ -80,7 +80,7 @@ address CariPegawaiDenganID(address root, int id);
 /*        Mengembalikan NULL jika id tidak ditemukan */
 /* tambah comment nanti */
 
-void HapusDaftar(Tree *P);
+void HapusDaftar(address root);
 /* tambah comment nanti */
 
 address MinValue(address node);

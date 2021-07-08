@@ -95,6 +95,14 @@ void CetakPegawaiPostorder(address node){
 	}
 }
 
+void HapusDaftar(address root){
+  if (root != NULL){
+    DestructTree(root->left);
+    DestructTree(root->right);
+    deteleNode(root);
+  }
+}
+
 address MinValue(address node) {
     address current = node;
 
