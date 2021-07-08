@@ -83,7 +83,7 @@ void DestructTree(Tree *P);
 address SuccessorInOrder(address node);
 /* mengemalikan address dari SuccessorInOrder*/
 
-address PredecessorInOrder(Tree P);
+address PredecessorInOrder(Tree P, address node);
 /* mengembalikan address dari PredecessorInOrder*/
 
 #endif //TREE_PEGAWAI_H
