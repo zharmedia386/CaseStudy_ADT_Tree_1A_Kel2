@@ -52,12 +52,38 @@ bool TambahPegawai(Tree *root, address node){
 	return true;
 }
 
-void PrintPreorder(Tree P){
-	if (P != Nil)
-	{
-		printf("%d", P.root->info.id);
-		printf("%s", P.root->info.nama);
-		PrintPreorder(P.root->info.)
-		Preorder(Right(P));
+void CetakPegawaiPreorder(Tree P){
+	if(P != NULL) {
+		printf("Id : %d\n", P.root->info.id);
+		printf("Nama : %s\n", P.root->info.nama);
+		CetakPegawaiPreorder(P.root->left);
+		CetakPegawaiPreorder(P.root->right);
 	}
 }
+
+void CetakPegawaiInorder(Tree P){
+	if(P != NULL) {
+		CetakPegawaiInorder(P.root->left);
+		printf("Id : %d\n", P.root->info.id);
+		printf("Nama : %s\n", P.root->info.nama);
+		CetakPegawaiInorder(P.root->right);
+	}
+}
+
+void CetakPegawaiPostorder(Tree P){
+	if(P != NULL) {
+		CetakPegawaiPostorder(P.root->left);
+		CetakPegawaiPostorder(P.root->right);
+		printf("Id : %d\n", P.root->info.id);
+		printf("Nama : %s\n", P.root->info.nama);
+	}
+}
+
+address GetLeft(Tree P){
+	return P.root->left;
+}
+
+address GetRight(Tree P){
+	return P.root->right;
+}
+

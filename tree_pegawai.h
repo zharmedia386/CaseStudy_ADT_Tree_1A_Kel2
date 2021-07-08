@@ -11,9 +11,9 @@
 #include <stdbool.h>
 
 #define Nil NULL
-#define Info(P)  (P)->info
-#define Left(P)  (P)->left
-#define Right(P) (P)->right
+#define Info(P)  (P).root->info
+#define Left(P)  (P).root->left
+#define Right(P) (P).root->right
 
 typedef struct {
   int id;
@@ -53,7 +53,7 @@ address GetLeft(Tree P);
 address GetRight(Tree P);
 /* Mengirimkan anak kanan pohon biner P  */
 
-bool TambahPegawai(Tree *root, infotype data);
+bool TambahPegawai(Tree *root, address node);
 /* tambah comment nanti */
 
 void HapusPegawai(Tree *root, address node);
