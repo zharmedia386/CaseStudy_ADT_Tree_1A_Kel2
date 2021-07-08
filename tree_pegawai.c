@@ -20,7 +20,7 @@ address Alokasi(infotype X){
 	return result;
 }
 
-void CreateEmpty(Tree *P, infotype data){
+void BuatDaftarKosong(Tree *P, infotype data){
 	address P = Alokasi(data);
 	P->root->left = NULL;
 	P->root->right = NULL;
@@ -34,6 +34,14 @@ bool isEmpty(Tree root){
 void Dealokasi(address node){
 	free(node->info.nama);
 	free(node);
+}
+
+address GetLeft(Tree P){
+	return P.root->left;
+}
+
+address GetRight(Tree P){
+	return P.root->right;
 }
 
 bool TambahPegawai(Tree *root, address node){
@@ -59,6 +67,7 @@ bool TambahPegawai(Tree *root, address node){
 	return true;
 }
 
+<<<<<<< HEAD
 bool HapusPegawai(Tree P, address* node) {
     *node = SuccessorInOrder(*node);
 }
@@ -69,24 +78,32 @@ void CetakPegawaiPreorder(Tree P){
 		printf("Nama : %s\n", P.root->info.nama);
 		CetakPegawaiPreorder(P.root->left);
 		CetakPegawaiPreorder(P.root->right);
+=======
+void CetakPegawaiPreorder(address node){
+	if(node != NULL) {
+		printf("Id : %d\n", node->info.id);
+		printf("Nama : %s\n", node->info.nama);
+		CetakPegawaiPreorder(node->left);
+		CetakPegawaiPreorder(node->right);
+>>>>>>> e26d33e65e222a13c585cc9756eba1454ac2a6bd
 	}
 }
 
-void CetakPegawaiInorder(Tree P){
-	if(P != NULL) {
-		CetakPegawaiInorder(P.root->left);
-		printf("Id : %d\n", P.root->info.id);
-		printf("Nama : %s\n", P.root->info.nama);
-		CetakPegawaiInorder(P.root->right);
+void CetakPegawaiInorder(address node){
+	if(node != NULL) {
+		CetakPegawaiInorder(node->left);
+		printf("Id : %d\n", node->info.id);
+		printf("Nama : %s\n", node->info.nama);
+		CetakPegawaiInorder(node->right);
 	}
 }
 
-void CetakPegawaiPostorder(Tree P){
-	if(P != NULL) {
-		CetakPegawaiPostorder(P.root->left);
-		CetakPegawaiPostorder(P.root->right);
-		printf("Id : %d\n", P.root->info.id);
-		printf("Nama : %s\n", P.root->info.nama);
+void CetakPegawaiPostorder(address node){
+	if(node != NULL) {
+		CetakPegawaiPostorder(node->left);
+		CetakPegawaiPostorder(node->right);
+		printf("Id : %d\n", node->info.id);
+		printf("Nama : %s\n", node->info.nama);
 	}
 }
 
@@ -98,6 +115,7 @@ address GetRight(Tree P){
 	return P.root->right;
 }
 
+<<<<<<< HEAD
 address MinValue(address node) {
     address current = node;
 
@@ -128,4 +146,29 @@ address SuccessorInOrder(Tree P, address node) {
     }
 
     return successor;
+=======
+address CariPegawaiDenganID(address root, int id){
+	if (root->left==Nil && root->right==Nil)
+	{
+		return Nil;
+	}
+	else
+	{
+		if (id == root->info.id) // id yang dicari ditemukan
+		{
+			return root;
+		}
+		else
+		{
+			if (id < root->info.id) // id < Info(root)
+			{
+				CariPegawaiDenganID(Left(root)), id);
+			}
+			else
+			{ /* id > Info(root)  */
+				CariPegawaiDenganID(Right(root)), id);
+			}
+		}
+	}
+>>>>>>> e26d33e65e222a13c585cc9756eba1454ac2a6bd
 }
