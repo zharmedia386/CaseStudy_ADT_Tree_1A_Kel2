@@ -20,7 +20,7 @@ address Alokasi(infotype X){
 	return result;
 }
 
-bool isEmpty(tree root){
+bool isEmpty(Tree root){
 	return (root.root);
 }
 
@@ -29,13 +29,13 @@ void Dealokasi(address node){
 	free(node);
 }
 
-bool AddNode(tree *root, address node){
+bool AddNode(Tree *root, address node){
 	if(isEmpty(*root)){
 		root->root = node; 
 		return true;
 	} 
 	
-	address current = tree->root;
+	address current = Tree->root;
 	while (current != NULL){
 		//cek apakah id sama atau tidak
 		if(current->info.id == node->info.id)
