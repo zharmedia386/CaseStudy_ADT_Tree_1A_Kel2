@@ -95,12 +95,13 @@ void CetakPegawaiPostorder(address node){
 	}
 }
 
-void HapusDaftar(address root){
-  if (root != NULL){
-    DestructTree(root->left);
-    DestructTree(root->right);
-    deteleNode(root);
-  }
+void HapusDaftar(address root) {
+    if(root == NULL)
+        return;
+
+    HapusDaftar(root->left);
+    HapusDaftar(root->right);
+    DeAlokasi(root);
 }
 
 address MinValue(address node) {
