@@ -38,7 +38,7 @@ address Alokasi(infotype data);
 /* Info(P)=data, Left(P)=Nil,Right(P)=Nil	*/
 /* Jika alokasi gagal mengembalikan Nil  		*/
 
-void BuatDaftarKosong(Tree *P, infotype data);
+void BuatDaftarKosong(Tree *P);
 /* membuat tree kosong*/
 
 bool IsEmpty(Tree root);
@@ -75,6 +75,9 @@ void CetakPegawaiPostorder(address node);
 /* 	  kanan, akar (dengan Proses (P)) 			    */
 
 address CariPegawaiDenganID(address root, int id);
+/* I.S  : root dan id terdefinisi   					    */
+/* F.S  : Mengembalikan address node jika id ditemukan  */
+/*        Mengembalikan NULL jika id tidak ditemukan */
 /* tambah comment nanti */
 
 void HapusDaftar(Tree *P);
