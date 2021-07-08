@@ -20,7 +20,7 @@ address Alokasi(infotype X){
 	return result;
 }
 
-void CreateEmpty(Tree *P, infotype data){
+void BuatDaftarKosong(Tree *P, infotype data){
 	address P = Alokasi(data);
 	P->root->left = NULL;
 	P->root->right = NULL;
@@ -34,6 +34,14 @@ bool isEmpty(Tree root){
 void Dealokasi(address node){
 	free(node->info.nama);
 	free(node);
+}
+
+address GetLeft(Tree P){
+	return P.root->left;
+}
+
+address GetRight(Tree P){
+	return P.root->right;
 }
 
 bool TambahPegawai(Tree *root, address node){
@@ -59,38 +67,29 @@ bool TambahPegawai(Tree *root, address node){
 	return true;
 }
 
-void CetakPegawaiPreorder(Tree P){
-	if(P != NULL) {
-		printf("Id : %d\n", P.root->info.id);
-		printf("Nama : %s\n", P.root->info.nama);
-		CetakPegawaiPreorder(P.root->left);
-		CetakPegawaiPreorder(P.root->right);
+void CetakPegawaiPreorder(address node){
+	if(node != NULL) {
+		printf("Id : %d\n", node->info.id);
+		printf("Nama : %s\n", node->info.nama);
+		CetakPegawaiPreorder(node->left);
+		CetakPegawaiPreorder(node->right);
 	}
 }
 
-void CetakPegawaiInorder(Tree P){
-	if(P != NULL) {
-		CetakPegawaiInorder(P.root->left);
-		printf("Id : %d\n", P.root->info.id);
-		printf("Nama : %s\n", P.root->info.nama);
-		CetakPegawaiInorder(P.root->right);
+void CetakPegawaiInorder(address node){
+	if(node != NULL) {
+		CetakPegawaiInorder(node->left);
+		printf("Id : %d\n", node->info.id);
+		printf("Nama : %s\n", node->info.nama);
+		CetakPegawaiInorder(node->right);
 	}
 }
 
-void CetakPegawaiPostorder(Tree P){
-	if(P != NULL) {
-		CetakPegawaiPostorder(P.root->left);
-		CetakPegawaiPostorder(P.root->right);
-		printf("Id : %d\n", P.root->info.id);
-		printf("Nama : %s\n", P.root->info.nama);
+void CetakPegawaiPostorder(address node){
+	if(node != NULL) {
+		CetakPegawaiPostorder(node->left);
+		CetakPegawaiPostorder(node->right);
+		printf("Id : %d\n", node->info.id);
+		printf("Nama : %s\n", node->info.nama);
 	}
 }
-
-address GetLeft(Tree P){
-	return P.root->left;
-}
-
-address GetRight(Tree P){
-	return P.root->right;
-}
-

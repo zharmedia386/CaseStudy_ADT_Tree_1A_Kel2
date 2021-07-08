@@ -38,11 +38,11 @@ address Alokasi(infotype data);
 /* Info(P)=data, Left(P)=Nil,Right(P)=Nil	*/
 /* Jika alokasi gagal mengembalikan Nil  		*/
 
+void BuatDaftarKosong(Tree *P, infotype data);
+/* membuat tree kosong*/
+
 bool IsEmpty(Tree root);
 /* Mengembalikan true jika pohon kosong */
-
-void BuatDaftarKosong(Tree *root);
-/* Membuat  Tree   kosong  */
 
 void DeAlokasi(address node);
 /*Menghapus satu node di alamat address*/
@@ -59,17 +59,17 @@ bool TambahPegawai(Tree *root, address node);
 void HapusPegawai(Tree *root, address node);
 /* tambah comment nanti */
 
-void CetakPegawaiPreorder(Tree P);
+void CetakPegawaiPreorder(address node);
 /* I.S  : P terdefinisi   					    */
 /* F.S  : semua simpul P sudah diproses secara Preorder; akar, kiri */
 /*        kanan (dengan Proses (P)) 				    */
 
-void CetakPegawaiInorder(Tree P);
+void CetakPegawaiInorder(address node);
 /* I.S  : P terdefinisi   					    */
 /* F.S  : semua simpul P sudah diproses secara Inorder; kiri, akar  */
 /*        kanan (dengan Proses (P)) 				    */
 
-void CetakPegawaiPostorder(Tree P);
+void CetakPegawaiPostorder(address node);
 /* I.S  : P terdefinisi   					    */
 /* F.S  : semua simpul P sudah diproses secara Postorder; kiri,     */
 /* 	  kanan, akar (dengan Proses (P)) 			    */
@@ -85,8 +85,5 @@ address SuccessorInOrder(address node);
 
 address PredecessorInOrder(Tree P, address node);
 /* mengembalikan address dari PredecessorInOrder*/
-
-void CreateEmpty(Tree *P, infotype data);
-/* membuat tree kosong*/
 
 #endif //TREE_PEGAWAI_H

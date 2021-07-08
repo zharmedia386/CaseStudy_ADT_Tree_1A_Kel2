@@ -53,7 +53,7 @@ int main()
 	Tree T;
 	infotype data;
 
-	CreateEmpty (&T, data);
+	BuatDaftarKosong(&T, data);
 	
 	while (1) {
 		scanf ("%c", &ch);
