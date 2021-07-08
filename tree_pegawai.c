@@ -50,3 +50,13 @@ bool AddNode(Tree *root, address node){
 	current = node;
 	return true;
 }
+
+void PrintPreorder(Tree P){
+	if (P != Nil)
+	{
+		printf("%d", P.root->info.id);
+		printf("%s", P.root->info.nama);
+		PrintPreorder(P.root->info.)
+		Preorder(Right(P));
+	}
+}
