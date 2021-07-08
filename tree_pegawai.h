@@ -47,16 +47,16 @@ bool IsEmpty(Tree root);
 void DeAlokasi(address node);
 /*Menghapus satu node di alamat address*/
 
-address GetLeft(Tree P);
+address GetLeft(address node);
 /* Mengirimkan anak kiri pohon biner P  */
 
-address GetRight(Tree P);
+address GetRight(address node);
 /* Mengirimkan anak kanan pohon biner P  */
 
 bool TambahPegawai(Tree *root, address node);
 /* tambah comment nanti */
 
-bool HapusPegawai(Tree *root, address node);
+bool HapusPegawai(Tree P, address* node);
 /* tambah comment nanti */
 
 void CetakPegawaiPreorder(address node);
