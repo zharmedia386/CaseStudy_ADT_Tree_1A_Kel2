@@ -20,6 +20,13 @@ address Alokasi(infotype X){
 	return result;
 }
 
+void CreateEmpty(Tree *P, infotype data){
+	address P = Alokasi(data);
+	P->root->left = NULL;
+	P->root->right = NULL;
+	P->root = P;
+}
+
 bool isEmpty(Tree root){
 	return (root.root);
 }
@@ -52,14 +59,43 @@ bool TambahPegawai(Tree *root, address node){
 	return true;
 }
 
-void PrintPreorder(Tree P){
-	if (P.root != Nil)
-	{
-		printf("%d", P.root->info.id);
-		printf("%s", P.root->info.nama);
-		PrintPreorder(P.root->info.)
-		Preorder(Right(P));
+bool HapusPegawai(Tree P, address* node) {
+    *node = SuccessorInOrder(*node);
+}
+
+void CetakPegawaiPreorder(Tree P){
+	if(P != NULL) {
+		printf("Id : %d\n", P.root->info.id);
+		printf("Nama : %s\n", P.root->info.nama);
+		CetakPegawaiPreorder(P.root->left);
+		CetakPegawaiPreorder(P.root->right);
 	}
+}
+
+void CetakPegawaiInorder(Tree P){
+	if(P != NULL) {
+		CetakPegawaiInorder(P.root->left);
+		printf("Id : %d\n", P.root->info.id);
+		printf("Nama : %s\n", P.root->info.nama);
+		CetakPegawaiInorder(P.root->right);
+	}
+}
+
+void CetakPegawaiPostorder(Tree P){
+	if(P != NULL) {
+		CetakPegawaiPostorder(P.root->left);
+		CetakPegawaiPostorder(P.root->right);
+		printf("Id : %d\n", P.root->info.id);
+		printf("Nama : %s\n", P.root->info.nama);
+	}
+}
+
+address GetLeft(Tree P){
+	return P.root->left;
+}
+
+address GetRight(Tree P){
+	return P.root->right;
 }
 
 address MinValue(address node) {

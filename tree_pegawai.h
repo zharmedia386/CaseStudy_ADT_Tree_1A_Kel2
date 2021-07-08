@@ -11,9 +11,9 @@
 #include <stdbool.h>
 
 #define Nil NULL
-#define Info(P)  (P)->info
-#define Left(P)  (P)->left
-#define Right(P) (P)->right
+#define Info(P)  (P).root->info
+#define Left(P)  (P).root->left
+#define Right(P) (P).root->right
 
 typedef struct {
   int id;
@@ -53,10 +53,10 @@ address GetLeft(Tree P);
 address GetRight(Tree P);
 /* Mengirimkan anak kanan pohon biner P  */
 
-bool TambahPegawai(Tree *root, infotype data);
+bool TambahPegawai(Tree *root, address node);
 /* tambah comment nanti */
 
-void HapusPegawai(Tree *root, address node);
+bool HapusPegawai(Tree *root, address node);
 /* tambah comment nanti */
 
 void CetakPegawaiPreorder(Tree P);
@@ -85,5 +85,8 @@ address MinValue(address node);
 address SuccessorInOrder(Tree P, address node);
 /* mengemalikan address dari SuccessorInOrder*/
 
+
+void CreateEmpty(Tree *P, infotype data);
+/* membuat tree kosong*/
 
 #endif //TREE_PEGAWAI_H
