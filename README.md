@@ -1,2 +1,2 @@
 # CaseStudy_ADT_Tree_1A_Kel2
-STUDI KASUS MEMBUAT APLIKASI PENDATAAN PEGAWAI DENGAN MENGGUNAKAN STRUKTUR DATA TREE
+Studi Kasus Membuat Aplikasi Pendataan Pegawai Dengan Menggunakan Struktur Data Tree
