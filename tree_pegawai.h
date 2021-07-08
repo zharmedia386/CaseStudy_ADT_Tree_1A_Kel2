@@ -80,10 +80,10 @@ address CariPegawaiDenganID(Tree P, int id);
 void HapusDaftar(Tree *P);
 /* tambah comment nanti */
 
-address SuccessorInOrder(address node);
+address MinValue(address node);
+
+address SuccessorInOrder(Tree P, address node);
 /* mengemalikan address dari SuccessorInOrder*/
 
-address PredecessorInOrder(Tree P, address node);
-/* mengembalikan address dari PredecessorInOrder*/
 
 #endif //TREE_PEGAWAI_H

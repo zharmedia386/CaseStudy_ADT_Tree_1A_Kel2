@@ -53,11 +53,43 @@ bool TambahPegawai(Tree *root, address node){
 }
 
 void PrintPreorder(Tree P){
-	if (P != Nil)
+	if (P.root != Nil)
 	{
 		printf("%d", P.root->info.id);
 		printf("%s", P.root->info.nama);
 		PrintPreorder(P.root->info.)
 		Preorder(Right(P));
 	}
+}
+
+address MinValue(address node) {
+    address current = node;
+
+    while(current->left != NULL) {
+        current = current->left;
+    }
+
+    return current;
+}
+
+/* mengemalikan address dari SuccessorInOrder*/
+address SuccessorInOrder(Tree P, address node) {
+    if(node->right != NULL) {
+        return MinValue(node->right);
+    }
+
+    address current = P.root;
+    address successor = Nil;
+
+    while(current != Nil) {
+        if(node->info.id < current->info.id) {
+            successor = current;
+            current = current->left;
+        } else if (n->info.id > current->info.id) {
+            current = current->right;
+        } else
+            break;
+    }
+
+    return successor;
 }
