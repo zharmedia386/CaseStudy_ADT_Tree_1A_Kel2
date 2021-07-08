@@ -47,7 +47,7 @@ bool TambahPegawai(Tree *root, address node){
 		return true;
 	} 
 	
-	address current = tree->root;
+	address current = root->root;
 	while (current != NULL){
 		//cek apakah id sama atau tidak
 		if(current->info.id == node->info.id)
@@ -57,7 +57,7 @@ bool TambahPegawai(Tree *root, address node){
 			//jika tidak ada anak, maka masukkan node
 			if(current->left == NULL){
 				current->left = node;
-				return true
+				return true;
 			}
 			current = current->left;
 		}
@@ -65,7 +65,7 @@ bool TambahPegawai(Tree *root, address node){
 			//jika tidak ada anak, maka masukkan node
 			if(current->right == NULL){
 				current->right = node;
-				return true
+				return true;
 			}
 			current = current->right;
 		}
