@@ -86,4 +86,7 @@ address SuccessorInOrder(address node);
 address PredecessorInOrder(Tree P, address node);
 /* mengembalikan address dari PredecessorInOrder*/
 
+void CreateEmpty(Tree *P, infotype data);
+/* membuat tree kosong*/
+
 #endif //TREE_PEGAWAI_H

@@ -20,8 +20,11 @@ address Alokasi(infotype X){
 	return result;
 }
 
-void createEmpty(address root){
-	tree->root = NULL;
+void CreateEmpty(Tree *P, infotype data){
+	address P = Alokasi(data);
+	P->root->left = NULL;
+	P->root->right = NULL;
+	P->root = P;
 }
 
 bool isEmpty(Tree root){
