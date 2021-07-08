@@ -1,8 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+
+
+
+
+
+
+
 int main()
 {
-    printf("Hello world!\n");
-    return 0;
+	int ch;
+	Tree T;
+	
+	CreateEmpty (&T);
+	
+	
+	
+	while (1) {
+		scanf ("%c", &ch);
+		switch (ch) {		
+			case 1: //Liat Tree
+				CekListPegawai();
+			case 2: //Tambah Pegawai
+				
+			case 3: //Delete Pegawai
+			
+			case 4: //Liat Data pegawai tertentu
+			
+			case 0: //Exit Aplikasi	
+				return 0;
+		}	
+	}
+	
 }
