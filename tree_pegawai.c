@@ -25,7 +25,7 @@ void BuatDaftarKosong(Tree *P){
 }
 
 bool isEmpty(Tree root){
-	return (root.root);
+	return !(root.root);
 }
 
 void Dealokasi(address node){
@@ -46,13 +46,12 @@ bool TambahPegawai(Tree *root, address node){
 		root->root = node; 
 		return true;
 	} 
-	
 	address current = root->root;
 	while (current != NULL){
 		//cek apakah id sama atau tidak
 		if(current->info.id == node->info.id)
 			return false;
-			
+		printf("a");
 		if(node->info.id < current->info.id){
 			//jika tidak ada anak, maka masukkan node
 			if(current->left == NULL){
@@ -60,6 +59,7 @@ bool TambahPegawai(Tree *root, address node){
 				return true;
 			}
 			current = current->left;
+			printf("c");
 		}
 		else{
 			//jika tidak ada anak, maka masukkan node
@@ -68,6 +68,7 @@ bool TambahPegawai(Tree *root, address node){
 				return true;
 			}
 			current = current->right;
+			printf("d");
 		}
 	}
 	return false;
@@ -110,7 +111,7 @@ void HapusDaftar(address root) {
 
     HapusDaftar(root->left);
     HapusDaftar(root->right);
-    DeAlokasi(root);
+    Dealokasi(root);
 }
 
 address MinValue(address node) {
