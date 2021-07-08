@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "tree_pegawai.h"
+#include "tree_pegawai.c"
+
 void addPegawai() {
-	
 	infotype X;
 	
 	printf ("PENDATAAN PEGAWAI PERUSAHAAN CIWARUGA CORP\n");
@@ -12,14 +14,13 @@ void addPegawai() {
 	scanf ("%[^\n]", X.nama);
 	fflush(stdin);
 	printf ("ID Pegawai : \n");
-	scanf ("%d", &X.id)
+	scanf ("%d", &X.id);
 	fflush(stdin);
 	
-	TambahPegawai(Tree *root, infotype data);
+	TambahPegawai(&root,X);
 }
 
-remove removePegawai() {
-	
+void removePegawai() {
 	infotype X;
 	
 	printf ("PENDATAAN PEGAWAI PERUSAHAAN CIWARUGA CORP\n");
@@ -28,10 +29,10 @@ remove removePegawai() {
 	printf ("ID Pegawai : \n");
 	scanf ("%d", &X.id)
 		
-	HapusPegawai(Tree *root, address node);
+	HapusPegawai(&root, address node);
 }
 
-remove searchPegawai() {
+void searchPegawai() {
 	
 	infotype X;
 	
@@ -41,7 +42,7 @@ remove searchPegawai() {
 	printf ("ID Pegawai : \n");
 	scanf ("%d", &X.id)
 		
-	CariPegawaiDenganID(Tree P, int id);
+	CariPegawaiDenganID(P, id);
 }
 
 
@@ -50,14 +51,15 @@ int main()
 {
 	int ch;
 	Tree T;
-	
-	CreateEmpty (&T);
+	infotype data;
+
+	CreateEmpty (&T, data);
 	
 	while (1) {
 		scanf ("%c", &ch);
 		switch (ch) {		
 			case 1: //Liat Tree
-				CetakPegawaiPreorder(Tree P);
+				CetakPegawaiPreorder(T);
 			case 2: //Tambah Pegawai
 				addPegawai();
 			case 3: //Delete Pegawai
