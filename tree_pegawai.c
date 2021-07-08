@@ -93,3 +93,36 @@ void CetakPegawaiPostorder(address node){
 		printf("Nama : %s\n", node->info.nama);
 	}
 }
+
+address GetLeft(Tree P){
+	return P.root->left;
+}
+
+address GetRight(Tree P){
+	return P.root->right;
+}
+
+address CariPegawaiDenganID(address root, int id){
+	if (root->left==Nil && root->right==Nil)
+	{
+		return Nil;
+	}
+	else
+	{
+		if (id == root->info.id) // id yang dicari ditemukan
+		{
+			return root;
+		}
+		else
+		{
+			if (id < root->info.id) // id < Info(root)
+			{
+				CariPegawaiDenganID(Left(root)), id);
+			}
+			else
+			{ /* id > Info(root)  */
+				CariPegawaiDenganID(Right(root)), id);
+			}
+		}
+	}
+}
