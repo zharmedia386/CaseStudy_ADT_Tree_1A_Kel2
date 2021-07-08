@@ -20,6 +20,10 @@ address Alokasi(infotype X){
 	return result;
 }
 
+void createEmpty(address root){
+	tree->root = NULL;
+}
+
 bool isEmpty(Tree root){
 	return (root.root);
 }
