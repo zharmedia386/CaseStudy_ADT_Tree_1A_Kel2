@@ -56,7 +56,7 @@ address GetRight(address node);
 bool TambahPegawai(Tree *root, address node);
 /* tambah comment nanti */
 
-bool HapusPegawai(Tree P, address* node);
+address HapusPegawai(address root, int id);
 /* tambah comment nanti */
 
 void CetakPegawaiPreorder(address node);

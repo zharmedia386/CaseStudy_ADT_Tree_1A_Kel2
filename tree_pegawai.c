@@ -71,14 +71,47 @@ bool TambahPegawai(Tree *root, address node){
 	return false;
 }
 
-bool HapusPegawai(Tree P, address* node) {
-    *node = SuccessorInOrder(P, *node);
+address HapusPegawai(address root, int id) {
+
+    if(root == Nil) {
+        printf("tidak ada pegawai dengan id %d\n", id);
+        return Nil;
+    }
+
+    if(root->info.id < id) {
+        root->right = HapusPegawai(root->right, id);
+        return root;
+    }
+    else if (root->info.id > id){
+        root->left = HapusPegawai(root->left, id);
+        return root;
+    }
+    else {
+        if(root->left == Nil) {
+            address temp = root->right;
+            Dealokasi(root);
+            return temp;
+        } else if(root->right == Nil) {
+            address temp = root->left;
+            Dealokasi(root);
+            return temp;
+        }
+
+        address temp = MinValue(root->right);
+        root->info.id = temp->info.id;
+        free(root->info.nama);
+        root->info.nama = malloc(strlen(temp->info.nama));
+        strcpy(root->info.nama, temp->info.nama);
+
+        root->right = HapusPegawai(root->right, temp->info.id);
+
+        return root;
+    }
 }
 
 void CetakPegawaiPreorder(address node){
 	if(node != NULL) {
-		printf("Id : %d\n", node->info.id);
-		printf("Nama : %s\n", node->info.nama);
+		printf("%-3d - %-30s\n", node->info.id, node->info.nama);
 		CetakPegawaiPreorder(node->left);
 		CetakPegawaiPreorder(node->right);
 	}
@@ -87,8 +120,7 @@ void CetakPegawaiPreorder(address node){
 void CetakPegawaiInorder(address node){
 	if(node != NULL) {
 		CetakPegawaiInorder(node->left);
-		printf("Id : %d\n", node->info.id);
-		printf("Nama : %s\n", node->info.nama);
+		printf("%-3d - %-30s\n", node->info.id, node->info.nama);
 		CetakPegawaiInorder(node->right);
 	}
 }
@@ -97,8 +129,7 @@ void CetakPegawaiPostorder(address node){
 	if(node != NULL) {
 		CetakPegawaiPostorder(node->left);
 		CetakPegawaiPostorder(node->right);
-		printf("Id : %d\n", node->info.id);
-		printf("Nama : %s\n", node->info.nama);
+		printf("%-3d - %-30s\n", node->info.id, node->info.nama);
 	}
 }
 
