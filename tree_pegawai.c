@@ -4,9 +4,9 @@
 #include <string.h>
 
 /*
-* @author :
-* @initialState :
-* @finaState :
+* @author : Rangga Yudha Yudistira
+Fungsi : menghasilkan address hasil alokasi sebuah node. Jika alokasi berhasil, 
+maka address tidak NULL, jika gagal akan mengembalikan NULL
 */
 address Alokasi(infotype X){
 	address result = (address)malloc(sizeof(ElmtNode));
@@ -26,27 +26,26 @@ address Alokasi(infotype X){
 }
 
 /*
-* @author :
-* @initialState :
-* @finaState :
+* @author : Syelvie Ira
+* @initialState : Masih kosong, belum terbentuk tree apapun
+* @finaState : Terbentuk tree yang masih kosong yang menunjuk ke NULL
 */
 void BuatDaftarKosong(Tree *P){
 	P->root = NULL;
 }
 
 /*
-* @author :
-* @initialState :
-* @finaState :
+* @author : Rangga Yudistira
+Fungsi : Mengembalikan true jika tree kosong, jika ada mengembalikan false
 */
 bool isEmpty(Tree root){
 	return !(root.root);
 }
 
 /*
-* @author :
-* @initialState :
-* @finaState :
+* @author : Rangga Yuda Yudistira
+* @initialState : Terdapat sebuah tree yang sudah dibentuk sebelumnya
+* @finaState : Sebuah node akan dikembalikan kepada sistem(terdealokasi)
 */
 void Dealokasi(address node){
 	free(node->info.nama);
@@ -54,22 +53,25 @@ void Dealokasi(address node){
 }
 
 /*
-* @author :
-* @initialState :
-* @finaState :
+* @author : M Azhar Alauddin
+* Fungsi : Mengembalikan Node sebelah kiri dari suatu node tertentu
 */
 address GetLeft(address node){
 	return node->left;
 }
 
+/*
+* @author : M Azhar Alauddin
+* Fungsi : Mengembalikan Node sebelah kanan dari suatu node tertentu
+*/
 address GetRight(address node){
 	return node->right;
 }
 
 /*
-* @author :
-* @initialState :
-* @finaState :
+* @author : Rangga Yuda Yudistira
+Fungsi : Menambah Pegawai baru, menghasilkan true jika berhasil ditambahkan.
+dan menghasilkan false jika gagal
 */
 bool TambahPegawai(Tree *root, address node){
 	if(isEmpty(*root)){
@@ -197,10 +199,11 @@ address HapusPegawai(Tree *t, address root, int id) {
 }
 
 /*
-* @author :
-* @initialState :
-* @finaState :
-*/
+* @author : M Azhar Alauddin
+* @initialState :P terdefinisi   
+* @finaState : semua simpul P sudah diproses secara Inorder; kiri, akar  */
+/*        kanan (dengan Proses (P)) 				    */
+
 void CetakPegawaiPreorder(address node){
 	if(node != NULL) {
 		printf("%-3d - %-30s\n", node->info.id, node->info.nama);
@@ -210,10 +213,11 @@ void CetakPegawaiPreorder(address node){
 }
 
 /*
-* @author :
-* @initialState :
-* @finaState :
-*/
+* @author : M Azhar Alauddin
+* @initialState :P terdefinisi   
+* @finaState : semua simpul P sudah diproses secara Inorder; kiri, akar  */
+/*        kanan (dengan Proses (P)) 				    */
+
 void CetakPegawaiInorder(address node){
 	if(node != NULL) {
 		CetakPegawaiInorder(node->left);
@@ -223,10 +227,11 @@ void CetakPegawaiInorder(address node){
 }
 
 /*
-* @author :
-* @initialState :
-* @finaState :
-*/
+* @author : M Azhar Alauddin
+* @initialState : P terdefinisi   
+* @finaState : semua simpul P sudah diproses secara Inorder; kiri, akar  */
+/*        kanan (dengan Proses (P)) 				    */
+
 void CetakPegawaiPostorder(address node){
 	if(node != NULL) {
 		CetakPegawaiPostorder(node->left);
@@ -236,9 +241,9 @@ void CetakPegawaiPostorder(address node){
 }
 
 /*
-* @author :
-* @initialState :
-* @finaState :
+* @author : Syelvie Ira
+* @initialState :  Terdapat sebuah tree yang sudah dibentuk sebelumnya
+* @finaState : Tree kosong, karena terdealokasi seluruh node-nya
 */
 void HapusDaftar(address root) {
     if(root == NULL)
@@ -295,10 +300,12 @@ address SuccessorInOrder(Tree P, address node) {
 }
 
 /*
-* @author :
-* @initialState :
-* @finaState :
-*/
+* @author : Dimas Wisnu
+* @initialState : root dan id terdefinisi   	
+* @finaState : Mengembalikan address node jika id ditemukan  
+Mengembalikan NULL jika id tidak ditemukan */
+
+
 address CariPegawaiDenganID(address root, int id){
 	if (root==Nil)
 	{
