@@ -42,16 +42,16 @@ void searchPegawai(Tree *T) {
 	getch();
 }
 
-void removePegawai(Tree daftarPegawai) {
+void removePegawai(Tree *daftarPegawai) {
 	int id;
 
-	printf ("PENDATAAN PEGAWAI PERUSAHAAN CIWARUGA CORP\n");
-	printf ("------------------------------------------------\n");
+	printf ("\nPENDATAAN PEGAWAI PERUSAHAAN CIWARUGA CORP\n");
+	printf ("----------------------------------------------\n");
 	printf ("                 HAPUS PEGAWAI               \n");
 	printf ("ID Pegawai : ");
 	scanf  ("%d", &id);
 
-	HapusPegawai(daftarPegawai.root, id);
+	HapusPegawai(daftarPegawai, daftarPegawai->root, id);
 }
 
 void addPegawai(Tree *root) {
@@ -59,8 +59,8 @@ void addPegawai(Tree *root) {
 	infotype X;
 	X.nama = malloc(255);
 
-    printf ("PENDATAAN PEGAWAI PERUSAHAAN CIWARUGA CORP\n");
-    printf ("--------------------------------------------\n");
+    printf ("\nPENDATAAN PEGAWAI PERUSAHAAN CIWARUGA CORP\n");
+    printf ("------------------------------------------\n");
     printf ("                TAMBAH PEGAWAI               \n");
     printf ("Nama Pegawai : ");
     scanf ("%[^\n]", X.nama);
@@ -80,7 +80,9 @@ void showPegawai(address root) {
         printf("Tekan apa saja untuk kembali.....\n");
         return;
     }
-
+    printf ("\nPENDATAAN PEGAWAI PERUSAHAAN CIWARUGA CORP\n");
+    printf ("------------------------------------------\n");
+    printf ("               DAFTAR PEGAWAI               \n");
     printf("\n%-3s   %-12s", "ID", "Nama Pegawai\n");
     CetakPegawaiInorder(root);
     printf("Tekan apa saja untuk kembali.....\n");
@@ -105,7 +107,7 @@ int main()
 				addPegawai(&daftarPegawai);
 				break;
 			case 3: //Delete Pegawai
-				removePegawai(daftarPegawai);
+				removePegawai(&daftarPegawai);
 				break;
 			case 4: //Liat Data pegawai tertentu
 				searchPegawai(&daftarPegawai);
