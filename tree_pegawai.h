@@ -56,8 +56,12 @@ address GetRight(address node);
 bool TambahPegawai(Tree *root, address node);
 /* tambah comment nanti */
 
-bool HapusPegawai(Tree P, address* node);
-/* tambah comment nanti */
+address HapusPegawai(Tree *t, address root, int id);
+/*
+* @author : Reihan Reinaldi Suryaman
+* @initialState : Tree terdefinisi, node dengan id : 'id' mungkin saja tidak ada dalam tree
+* @finaState : Jika node dengan id : 'id' ada maka node dihapus, jika tidak ada maka tampilkan pesan
+*/
 
 void CetakPegawaiPreorder(address node);
 /* I.S  : P terdefinisi   					    */
@@ -84,9 +88,18 @@ void HapusDaftar(address root);
 /* tambah comment nanti */
 
 address MinValue(address node);
+/*
+* @author : Reihan Reinaldi Suryaman
+* @initialState : node terdefinisi
+* @finaState : mengembalikan nilai paling kecil dari anak anak node
+*/
 
 address SuccessorInOrder(Tree P, address node);
-/* mengemalikan address dari SuccessorInOrder*/
+/*
+* @author : Reihan Reinaldi Suryaman
+* @initialState : node terdefinisi, P terdefinisi
+* @finaState : mengembalikan successor inorder dari node
+*/
 
 
 #endif //TREE_PEGAWAI_H
