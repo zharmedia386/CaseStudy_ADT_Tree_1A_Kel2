@@ -3,6 +3,11 @@
 #include <stdio.h>
 #include <string.h>
 
+/*
+* @author : Rangga Yudha Yudistira
+Fungsi : menghasilkan address hasil alokasi sebuah node. Jika alokasi berhasil, 
+maka address tidak NULL, jika gagal akan mengembalikan NULL
+*/
 address Alokasi(infotype X){
 	address result = (address)malloc(sizeof(ElmtNode));
 	if(!result)
@@ -20,27 +25,54 @@ address Alokasi(infotype X){
 	return result;
 }
 
+/*
+* @author : Syelvie Ira
+* @initialState : Masih kosong, belum terbentuk tree apapun
+* @finaState : Terbentuk tree yang masih kosong yang menunjuk ke NULL
+*/
 void BuatDaftarKosong(Tree *P){
 	P->root = NULL;
 }
 
+/*
+* @author : Rangga Yudistira
+Fungsi : Mengembalikan true jika tree kosong, jika ada mengembalikan false
+*/
 bool isEmpty(Tree root){
 	return !(root.root);
 }
 
+/*
+* @author : Rangga Yuda Yudistira
+* @initialState : Terdapat sebuah tree yang sudah dibentuk sebelumnya
+* @finaState : Sebuah node akan dikembalikan kepada sistem(terdealokasi)
+*/
 void Dealokasi(address node){
 	free(node->info.nama);
 	free(node);
 }
 
+/*
+* @author : M Azhar Alauddin
+* Fungsi : Mengembalikan Node sebelah kiri dari suatu node tertentu
+*/
 address GetLeft(address node){
 	return node->left;
 }
 
+/*
+* @author : M Azhar Alauddin
+* Fungsi : Mengembalikan Node sebelah kanan dari suatu node tertentu
+*/
 address GetRight(address node){
 	return node->right;
 }
 
+/*
+* @author : Rangga Yuda Yudistira
+Fungsi : Menambah Pegawai baru, menghasilkan true jika berhasil ditambahkan.
+dan menghasilkan false jika gagal
+*/
 bool TambahPegawai(Tree *root, address node){
 	if(isEmpty(*root)){
 		root->root = node;
@@ -73,37 +105,146 @@ bool TambahPegawai(Tree *root, address node){
 	return false;
 }
 
-bool HapusPegawai(Tree P, address* node) {
-    *node = SuccessorInOrder(P, *node);
+/*
+* @author : Reihan Reinaldi Suryaman
+* @initialState : Tree terdefinisi, node dengan id : 'id' mungkin saja tidak ada dalam tree
+* @finaState : Jika node dengan id : 'id' ada maka node dihapus, jika tidak ada maka tampilkan pesan
+*/
+address HapusPegawai(Tree *t, address root, int id) {
+
+    //base rekursif, jika mencapai kondisi ini maka node dengan id 'id' tidak ada dalam tree
+    if(root == Nil) {
+        printf("tidak ada pegawai dengan id %d\n", id);
+        return Nil;
+    }
+
+    //Cari ke kanan jika id > root->info.id
+    if(root->info.id < id) {
+        root->right = HapusPegawai(t, root->right, id);
+        return root;
+    }
+    //Cari ke kanan jika id < root->info.id
+    else if (root->info.id > id){
+        root->left = HapusPegawai(t, root->left, id);
+        return root;
+    }
+    else {
+        //Jika root tidak memiliki child left
+        if(root->left == Nil) {
+            address temp = root->right;
+            //Jika root ternyata sama dengan tree root dan child right tidak null, maka child right jadi tree root baru
+            if(root == t->root && root->right != Nil) {
+                //Menyalin nilai dari child right ke tree root
+                t->root->info.id = temp->info.id;
+                free(t->root->info.nama);
+                t->root->info.nama = malloc(strlen(temp->info.nama));
+                strcpy(t->root->info.nama, temp->info.nama);
+
+                //Hapus right child dari tree root
+                t->root->right = HapusPegawai(t, t->root->right, temp->info.id);
+                return t->root;
+            }
+
+            //Jika child right dari tree node null, maka tree menjadi tree kosong
+            else if (root == t->root && root->right == Nil) {
+                t->root = Nil;
+                return Nil;
+            }
+
+            //Jika root bukan tree root
+            Dealokasi(root);
+            return temp;
+        }
+
+        //Jika root tidak memiliki child right
+        else if(root->right == Nil) {
+            address temp = root->left;
+             //Jika root ternyata sama dengan tree root dan child left tidak null, maka child left jadi tree root baru
+            if(root == t->root && root->left != Nil) {
+                //Menyalin nilai dari child right ke tree root
+                t->root->info.id = temp->info.id;
+                free(t->root->info.nama);
+                t->root->info.nama = malloc(strlen(temp->info.nama));
+                strcpy(t->root->info.nama, temp->info.nama);
+
+                //Hapus left child dari tree root
+                t->root->left = HapusPegawai(t, t->root->left, temp->info.id);
+                return t->root;
+            }
+
+            //Jika child left dari tree node null, maka tree menjadi tree kosong
+            else if (root == t->root && root->left == Nil) {
+                t->root = Nil;
+                return Nil;
+            }
+
+            //Jika root bukan tree root
+            Dealokasi(root);
+            return temp;
+        }
+
+        //root memiliki 2 anak, maka yang menggantikan root adalah inorder successor dari root
+        address temp = MinValue(root->right);
+        //Menyalin nilai dari inorder successor ke root
+        root->info.id = temp->info.id;
+        free(root->info.nama);
+        root->info.nama = malloc(strlen(temp->info.nama));
+        strcpy(root->info.nama, temp->info.nama);
+
+        //hapus inorder successor
+        root->right = HapusPegawai(t, root->right, temp->info.id);
+
+        return root;
+    }
 }
+
+/*
+* @author : M Azhar Alauddin
+* @initialState :P terdefinisi   
+* @finaState : semua simpul P sudah diproses secara Inorder; kiri, akar  */
+/*        kanan (dengan Proses (P)) 				    */
 
 void CetakPegawaiPreorder(address node){
 	if(node != NULL) {
-		printf("Id : %d\n", node->info.id);
-		printf("Nama : %s\n", node->info.nama);
+		printf("%-3d - %-30s\n", node->info.id, node->info.nama);
 		CetakPegawaiPreorder(node->left);
 		CetakPegawaiPreorder(node->right);
 	}
 }
 
+/*
+* @author : M Azhar Alauddin
+* @initialState :P terdefinisi   
+* @finaState : semua simpul P sudah diproses secara Inorder; kiri, akar  */
+/*        kanan (dengan Proses (P)) 				    */
+
 void CetakPegawaiInorder(address node){
 	if(node != NULL) {
 		CetakPegawaiInorder(node->left);
-		printf("Id : %d\n", node->info.id);
-		printf("Nama : %s\n", node->info.nama);
+		printf("%-3d - %-30s\n", node->info.id, node->info.nama);
 		CetakPegawaiInorder(node->right);
 	}
 }
+
+/*
+* @author : M Azhar Alauddin
+* @initialState : P terdefinisi   
+* @finaState : semua simpul P sudah diproses secara Inorder; kiri, akar  */
+/*        kanan (dengan Proses (P)) 				    */
 
 void CetakPegawaiPostorder(address node){
 	if(node != NULL) {
 		CetakPegawaiPostorder(node->left);
 		CetakPegawaiPostorder(node->right);
-		printf("Id : %d\n", node->info.id);
-		printf("Nama : %s\n", node->info.nama);
+		printf("%-3d - %-30s\n", node->info.id, node->info.nama);
 	}
 }
 
+/*
+* @author : Syelvie Ira
+* @initialState :  Terdapat sebuah tree yang sudah dibentuk sebelumnya
+* @finaState : Tree kosong, karena terdealokasi seluruh node-nya
+*/
 void HapusDaftar(address root) {
     if(root == NULL)
         return;
@@ -113,9 +254,15 @@ void HapusDaftar(address root) {
     Dealokasi(root);
 }
 
+/*
+* @author : Reihan Reinaldi Suryaman
+* @initialState : node terdefinisi
+* @finaState : mengembalikan nilai paling kecil dari anak anak node
+*/
 address MinValue(address node) {
     address current = node;
 
+    //node paling kecil ada di anak paling kiri
     while(current->left != NULL) {
         current = current->left;
     }
@@ -123,12 +270,19 @@ address MinValue(address node) {
     return current;
 }
 
-/* mengemalikan address dari SuccessorInOrder*/
+/*
+* @author : Reihan Reinaldi Suryaman
+* @initialState : node terdefinisi, P terdefinisi
+* @finaState : mengembalikan successor inorder dari node
+*/
 address SuccessorInOrder(Tree P, address node) {
+
+    //Jika node memiliki right child maka successor inorder terdapat di nilai paling kecil dari anak anak child right node
     if(node->right != NULL) {
         return MinValue(node->right);
     }
 
+    //Jika tidak memiliki anak kanan, maka successor adalah parent dari node
     address current = P.root;
     address successor = Nil;
 
@@ -144,6 +298,13 @@ address SuccessorInOrder(Tree P, address node) {
 
     return successor;
 }
+
+/*
+* @author : Dimas Wisnu
+* @initialState : root dan id terdefinisi   	
+* @finaState : Mengembalikan address node jika id ditemukan  
+Mengembalikan NULL jika id tidak ditemukan */
+
 
 address CariPegawaiDenganID(address root, int id){
 	if (root==Nil)
